@@ -1,7 +1,6 @@
 # File compilati
 *.o
 *.out
-*.exe
 *.gch
 
 # Cartelle build
