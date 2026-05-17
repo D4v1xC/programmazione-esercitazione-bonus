@@ -1,0 +1,12 @@
+# File compilati
+*.o
+*.out
+*.exe
+*.gch
+
+# Cartelle build
+build/
+
+# File temporanei
+*.log
+.DS_Store
