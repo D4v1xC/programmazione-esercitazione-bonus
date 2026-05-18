@@ -21,6 +21,7 @@ int main()
     // 1. Creazione figure
     shapes[nShapes++] = new Rectangle(0, 0, 10, 5);
     shapes[nShapes++] = new Rhombus(2, 2, 10, 6);
+
     shapes[nShapes++] = new RightTriangle(1, 1, 6, 4);  
 
 
@@ -37,9 +38,10 @@ int main()
     for (int i = 0; i < nShapes; i++) {
         cout << endl << "Figura [" << i << "]" << endl;
         shapes[i]->Dump();
-    }
 
-    
+        cout << "Area: " << shapes[i]->GetArea() << endl;
+        cout << "Perimetro: " << shapes[i]->GetPerimeter() << endl;      //routine per verificare comportamento della nuova gerarchia di classi
+    }
 
     cout << endl << "===== FINE TEST =====" << endl;
 
