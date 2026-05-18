@@ -182,7 +182,13 @@ void Shape::Reset()
    
 void Shape::Scale(float sf) 
 {
-	// TO DO
+	if(sf < 0)               //scala bounding box e figura geometrica, se sf=1 non cambia 
+    {
+        WarningMessage("negative scale factor");
+        return;
+    }
+    width = width * sf;
+    height = height * sf;
 }
 
 /* ----------------------------
