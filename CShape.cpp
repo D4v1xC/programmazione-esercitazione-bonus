@@ -9,6 +9,8 @@
 #include<new>        
 #include<cmath>      
 
+#define GRID_SIZE 100   //definisce dimensione massima della griglia
+
 using namespace std;
 
 /// @brief helper: safe copy with null checks and guaranteed termination
