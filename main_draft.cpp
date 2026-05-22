@@ -105,6 +105,12 @@ int main()
 
         case 4:         //inserisci
         {
+            if(nShapes >= MAX_SHAPES)
+            {
+                cout << "Errore: numero massimo di poligoni raggiunto!" << endl;
+                break;
+            }           
+
             int type;
 
             float x,y,w,h;
