@@ -191,6 +191,22 @@ void Shape::Scale(float sf)
     }
     width = width * sf;
     height = height * sf;
+
+    // controllo che la figura rimanga dentro la griglia 100x100
+
+    if(x + width > GRID_SIZE)
+    {
+        width = GRID_SIZE - x;
+
+        WarningMessage("Scale: width limited by grid size");
+    }
+
+    if(y + height > GRID_SIZE)
+    {
+        height = GRID_SIZE - y;
+
+        WarningMessage("Scale: height limited by grid size");
+    }
 }
 
 /* ----------------------------
@@ -214,8 +230,28 @@ void Shape::SetPosition(float px, float py)
 		y = 0;
 	}		
 	else 
-		y = py;
+    {
+        y = py;
+    }
+		
+    //controllo limiti della griglia 100x100
+    
+    if(px + width > GRID_SIZE)
+    {
+        WarningMessage("SetPosition: x fuori dalla griglia");
 
+        px = GRID_SIZE - width;
+    }
+
+    if(py + height > GRID_SIZE)
+    {
+        WarningMessage("SetPosition: y fuori dalla griglia");
+
+        py = GRID_SIZE - height;
+    }
+
+    x = px;
+    y = py;
 }
 
 /// @brief set height of the object
@@ -225,6 +261,15 @@ void Shape::SetHeight(float h)
     if (h < 0.0) {
         WarningMessage("SetHeight: negative value, clamped to 0");
         h = 0.0;
+    }
+
+    // controllo che la figura rimanga dentro la griglia 100x100
+
+    if(y + h > GRID_SIZE)
+    {
+        WarningMessage("SetHeight: exceeds grid");
+
+        h = GRID_SIZE - y;
     }
     height = h;
 }
@@ -236,6 +281,15 @@ void Shape::SetWidth(float w)
     if (w < 0.0) {
         WarningMessage("SetWidth: negative value, clamped to 0");
         w = 0.0;
+    }
+
+    // controllo che la figura rimanga dentro la griglia 100x100
+
+    if(x + w > GRID_SIZE)
+    {
+        WarningMessage("SetWidth: exceeds grid");
+
+        w = GRID_SIZE - x;
     }
     width = w;
 }
@@ -364,4 +418,18 @@ void Shape::Dump()
     std::cout << "  Bounding Box Area:   " << GetBoundingBoxArea() << std::endl;
  	
 	cout << endl;
+
+    // stampo la figura solo se è dentro la griglia
+
+    if(x >= 0 && y >= 0 && x + width <= GRID_SIZE && y + height <= GRID_SIZE)
+    {
+        cout << "  Grid status: inside 100x100 grid" << endl;
+    }
+    else
+    {
+        cout << "  Grid status: outside grid" << endl;
+    }
+
+    cout << endl;
+
 }
